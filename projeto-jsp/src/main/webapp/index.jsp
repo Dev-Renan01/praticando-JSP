@@ -11,6 +11,15 @@
 	<%
 	out.print("Trabalhando com java - JSP");
 	%>
+	
+	<form action="receber-nome.jsp">
+	
+	<input name="nome">
+	<input name="idade">
+	
+	<input type="submit" value="enviar">
+	
+	</form>
 
 </body>
 </html>
