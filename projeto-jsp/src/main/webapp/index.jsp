@@ -8,16 +8,27 @@
 </head>
 <body>
 	<h1>Seja bem vindo(a) ao meu projeto JSP</h1>
-	
+
 	<form action="ServletLogin" method="post">
-	
-	<input name="nome">
-	<input name="email">
-	<input name="idade">
-	
-	<input type="submit" value="enviar">
-	
-	</form> 
+		<table>
+			<tr>
+				<td><label>Login: </label></td>
+				<td><input name="login" type="text"></td>
+			</tr>
+
+			<tr>
+				<td><label>Senha: </label></td>
+				<td><input name="senha" type="password"></td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td><input type="submit" value="enviar"></td>
+			</tr>
+
+		</table>
+	</form>
+	<h4>${msg}</h4>
 
 </body>
 </html>
