@@ -7,19 +7,17 @@
 <title>Projeto JSP</title>
 </head>
 <body>
-	<h2>Seja bem vindo(a) ao meu projeto JSP</h2>
-	<%
-	out.print("Trabalhando com java - JSP");
-	%>
+	<h1>Seja bem vindo(a) ao meu projeto JSP</h1>
 	
-	<form action="receber-nome.jsp">
+	<form action="ServletLogin" method="post">
 	
 	<input name="nome">
+	<input name="email">
 	<input name="idade">
 	
 	<input type="submit" value="enviar">
 	
-	</form>
+	</form> 
 
 </body>
 </html>
