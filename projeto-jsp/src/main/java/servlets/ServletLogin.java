@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.ModelLogin;
 
-@WebServlet("/ServletLogin") // Mapeamento da URL que vem da tela
+@WebServlet(urlPatterns = {"/principal/ServletLogin", "/ServletLogin"}) // Mapeamento da URL que vem da tela
 public class ServletLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -30,24 +30,37 @@ public class ServletLogin extends HttpServlet {
 
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
+		String url = request.getParameter("url");
+		
+		if(login == null && senha == null || (login.isEmpty() && senha.isEmpty())) {
+			
+			RequestDispatcher redirecionar = request.getRequestDispatcher("index.jsp");
+			request.setAttribute("msg", "Informe o login e a senha!");
+			redirecionar.forward(request, response);
+		}
 
 		if (login != null && !login.isEmpty() && senha != null && !senha.isEmpty()) {
 
 			ModelLogin modelLogin = new ModelLogin();
 			modelLogin.setLogin(login);
 			modelLogin.setSenha(senha);
+			
 
 			if (modelLogin.getLogin().equalsIgnoreCase("thiago") // Simulando um login
 					&& modelLogin.getSenha().equalsIgnoreCase("1234")) {
 
-				//request.getSession().setAttribute("usuario", modelLogin);//Atributo de sessão / manter o usuário logado no sistema
+				request.getSession().setAttribute("usuario", modelLogin.getLogin());//Atributo de sessão / manter o usuário logado no sistema
 
+				if(url == null || url.equals("null")) {
+					url = "principal/principal.jsp";
+				}
+								
 				RequestDispatcher redirecionar = request.getRequestDispatcher("principal/principal.jsp");
 				redirecionar.forward(request, response);
-
+				
 			} else {
 
-				RequestDispatcher redirecionar = request.getRequestDispatcher("index.jsp");
+				RequestDispatcher redirecionar = request.getRequestDispatcher("/index.jsp");
 				request.setAttribute("msg", "Informe login e senha corretamente!");
 				redirecionar.forward(request, response);
 			}

@@ -10,6 +10,7 @@
 	<h1>Seja bem vindo(a) ao meu projeto JSP</h1>
 
 	<form action="ServletLogin" method="post">
+	<input type="hidden" value="<%=request.getParameter("url")%>" name>
 		<table>
 			<tr>
 				<td><label>Login: </label></td>

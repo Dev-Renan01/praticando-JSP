@@ -8,10 +8,6 @@
 </head>
 <body>
 	<h2>Tela principal após o login</h2>
-	<form action="ServletLogin" method="post">
-	
-	
-	</form>
 
 </body>
 </html>
