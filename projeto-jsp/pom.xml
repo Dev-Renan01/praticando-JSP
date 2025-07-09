@@ -6,6 +6,19 @@
   <packaging>war</packaging>
   <name>projeto-jsp</name>
   <description>projeto jsp Dev-Renan</description>
+  
+  	<dependencies>
+  
+  <dependency>
+  <groupId>org.postgresql</groupId>
+  <artifactId>postgresql</artifactId>
+  <version>42.7.3</version>
+
+</dependency>
+
+  </dependencies>
+  
+  
   <build>
     <plugins>
       <plugin>
