@@ -26,9 +26,19 @@ public class ServletLogin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		doPost(request, response);
+		String acao = request.getParameter("acao");
+
+		if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("logout")) {
+			request.getSession().invalidate();// Invalidar a sessão
+			RequestDispatcher redirecionar = request.getRequestDispatcher("index.jsp");
+			redirecionar.forward(request, response);
+			
+		}else {
+			doPost(request, response);
+
+		}
+
 	}
-	
 
 	// Recebe os dados enviados por um formulário
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -45,10 +55,8 @@ public class ServletLogin extends HttpServlet {
 			redirecionar.forward(request, response);
 		}
 
-		
 		try {
-			
-			
+
 			if (login != null && !login.isEmpty() && senha != null && !senha.isEmpty()) {
 
 				ModelLogin modelLogin = new ModelLogin();
