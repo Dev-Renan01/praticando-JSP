@@ -16,9 +16,9 @@
       <div class="col-md-6">
         <div class="card shadow">
           <div class="card-body">
-            <h1 class="text-center mb-4">Seja bem-vindo(a) ao meu projeto JSP</h1>
+            <h3 class="text-center mb-4">Seja bem-vindo(a) ao meu projeto JSP</h3>
 
-            <form action="ServletLogin" method="post">
+            <form action="<%=request.getContextPath() %>/ServletLogin" method="post">
               <input type="hidden" value="<%= request.getParameter("url") %>" name="url">
 
               <div class="mb-3">
