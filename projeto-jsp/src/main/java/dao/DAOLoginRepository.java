@@ -8,6 +8,7 @@ import connection.SingleConnectionBanco;
 import model.ModelLogin;
 
 public class DAOLoginRepository {
+	
 	private Connection connection;
 
 	public DAOLoginRepository() {

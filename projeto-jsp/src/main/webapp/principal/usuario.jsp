@@ -34,60 +34,54 @@
 								<div class="page-wrapper">
 									<!-- Page-body start -->
 									<div class="page-body">
-										<h3>Cadastro de usuário</h3>
 
 										<div class="row">
 											<div class="col-sm-12">
 												<!-- Basic Form Inputs card start -->
 												<div class="card">
 													<div class="card-block">
-														<h4 class="sub-title">Basic Inputs</h4>
+														<h3 class="sub-title">Cadastro de Usuário</h3>
 
-														<form class="form-material">
+														<form class="form-material"
+															action="<%=request.getContextPath()%>/ServletUsuarioController"
+															method="post">
 															<div class="form-group form-default">
-																<input type="text" name="footer-email"
-																	class="form-control" required=""> <span
+																<input type="text" name="id" id="id"
+																	class="form-control" readonly="readonly"> <span
 																	class="form-bar"></span> <label class="float-label">Id:</label>
 															</div>
 															<div class="form-group form-default">
-																<input type="text" name="footer-email"
-																	class="form-control" required=""
-																	value="Nome do usuário"> <span class="form-bar"></span>
-																<label class="float-label">Nome</label>
+																<input type="text" name="nome" id="nome"
+																	class="form-control" required="required"
+																	autocomplete="off"> <span class="form-bar">
+																</span> <label class="float-label">Nome:</label>
 															</div>
 															<div class="form-group form-default">
-																<input type="text" name="footer-email"
-																	class="form-control" required=""> <span
-																	class="form-bar"></span> <label class="float-label">Email
-																	(exa@gmail.com)</label>
+																<input type="email" name="email" id="email"
+																	class="form-control" required="required"
+																	autocomplete="off"> <span class="form-bar"></span>
+																<label class="float-label">Email </label>
 															</div>
 															<div class="form-group form-default">
-																<input type="password" name="footer-email"
-																	class="form-control" required=""> <span
-																	class="form-bar"></span> <label class="float-label">Password</label>
+																<input type="text" name="login" id="login"
+																	class="form-control" required="required"
+																	autocomplete="off"> <span class="form-bar"></span>
+																<label class="float-label">Login </label>
 															</div>
+															<div class="form-group form-default">
+																<input type="password" name="senha" id="senha"
+																	class="form-control" required="required"
+																	autocomplete="off"> <span class="form-bar"></span>
+																<label class="float-label">Password</label>
+															</div>
+															${msg}
+															<button
+																class="btn waves-effect waves-light btn-grd-primary ">Novo</button>
+															<button
+																class="btn waves-effect waves-light btn-grd-success">Salvar</button>
+															<button
+																class="btn waves-effect waves-light btn-grd-info ">Excluir</button>
 
-															<button
-																class="btn waves-effect waves-light btn-grd-primary ">Primary
-																Button</button>
-															<button
-																class="btn waves-effect waves-light btn-grd-success">Success
-																Button</button>
-															<button
-																class="btn waves-effect waves-light btn-grd-info ">Info
-																Button</button>
-															<button
-																class="btn waves-effect waves-light btn-grd-warning ">Warning
-																Button</button>
-															<button
-																class="btn waves-effect waves-light btn-grd-danger ">Danger
-																Button</button>
-															<button
-																class="btn waves-effect waves-light btn-grd-inverse ">Inverse
-																Button</button>
-															<button
-																class="btn waves-effect waves-light btn-grd-disabled btn-disabled disabled">Disabled
-																Button</button>
 
 														</form>
 													</div>
