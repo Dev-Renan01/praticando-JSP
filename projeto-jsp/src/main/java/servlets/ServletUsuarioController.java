@@ -40,7 +40,6 @@ public class ServletUsuarioController extends HttpServlet {
 		String email = request.getParameter("email");
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
-		String url = request.getParameter("url");
 
 		ModelLogin modelLogin = new ModelLogin();
 
@@ -50,11 +49,9 @@ public class ServletUsuarioController extends HttpServlet {
 		modelLogin.setLogin(login);
 		modelLogin.setSenha(senha);
 
-		try {
-			daoUsuarioRepository.gravarusuario(modelLogin);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	 
+			modelLogin = daoUsuarioRepository.gravarusuario(modelLogin);
+		
 
 		request.setAttribute("msg", "Operação realizada com sucesso!");
 		RequestDispatcher redirecionar = request.getRequestDispatcher("principal/usuario.jsp");
@@ -63,7 +60,7 @@ public class ServletUsuarioController extends HttpServlet {
 		
 		}catch (Exception e) {
 			e.printStackTrace();
-			RequestDispatcher redirecionar = request.getRequestDispatcher("principal/erro.jsp");
+			RequestDispatcher redirecionar = request.getRequestDispatcher("erro.jsp");
 			request.setAttribute("msg", e.getMessage());
 			redirecionar.forward(request, response);
 		}
