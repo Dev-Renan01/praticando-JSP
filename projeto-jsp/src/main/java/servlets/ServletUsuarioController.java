@@ -34,31 +34,34 @@ public class ServletUsuarioController extends HttpServlet {
 			throws ServletException, IOException {
 
 		try {
-			
-		String id = request.getParameter("id");
-		String nome = request.getParameter("nome");
-		String email = request.getParameter("email");
-		String login = request.getParameter("login");
-		String senha = request.getParameter("senha");
+			String msg = "Operação realizada com sucesso!";
 
-		ModelLogin modelLogin = new ModelLogin();
+			String id = request.getParameter("id");
+			String nome = request.getParameter("nome");
+			String email = request.getParameter("email");
+			String login = request.getParameter("login");
+			String senha = request.getParameter("senha");
 
-		modelLogin.setId(id != null && !id.isEmpty() ? Long.parseLong(id) : null);
-		modelLogin.setNome(nome);
-		modelLogin.setEmail(email);
-		modelLogin.setLogin(login);
-		modelLogin.setSenha(senha);
+			ModelLogin modelLogin = new ModelLogin();
 
-	 
-			modelLogin = daoUsuarioRepository.gravarusuario(modelLogin);
-		
+			modelLogin.setId(id != null && !id.isEmpty() ? Long.parseLong(id) : null);
+			modelLogin.setNome(nome);
+			modelLogin.setEmail(email);
+			modelLogin.setLogin(login);
+			modelLogin.setSenha(senha);
 
-		request.setAttribute("msg", "Operação realizada com sucesso!");
-		RequestDispatcher redirecionar = request.getRequestDispatcher("principal/usuario.jsp");
-		request.setAttribute("modelLogin", modelLogin);
-		redirecionar.forward(request, response);
-		
-		}catch (Exception e) {
+			if (daoUsuarioRepository.validarLogin(modelLogin.getLogin()) && modelLogin.getId() == null) {
+				msg = "Já existe usuário com o mesmo login, Informe outro login!";
+			}else {
+				modelLogin = daoUsuarioRepository.gravarusuario(modelLogin);
+			}
+
+			request.setAttribute("msg", msg);
+			RequestDispatcher redirecionar = request.getRequestDispatcher("principal/usuario.jsp");
+			request.setAttribute("modelLogin", modelLogin);
+			redirecionar.forward(request, response);
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			RequestDispatcher redirecionar = request.getRequestDispatcher("erro.jsp");
 			request.setAttribute("msg", e.getMessage());
