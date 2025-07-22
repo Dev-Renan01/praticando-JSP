@@ -18,16 +18,32 @@ public class DAOUsuarioRepository {
 
 	public ModelLogin gravarusuario(ModelLogin modelLogin) throws Exception {
 
-		String sql = "insert into model_login( login, senha, nome, email) values (?, ?, ?, ?);";
+		if (modelLogin.isNovo()) { /* Grava um novo usuário */
 
-		PreparedStatement statement = connection.prepareStatement(sql);
-		statement.setString(1, modelLogin.getLogin());
-		statement.setString(2, modelLogin.getSenha());
-		statement.setString(3, modelLogin.getNome());
-		statement.setString(4, modelLogin.getEmail());
+			String sql = "insert into model_login( login, senha, nome, email) values (?, ?, ?, ?);";
 
-		statement.execute();
-		connection.commit();
+			PreparedStatement statementGravar = connection.prepareStatement(sql);
+			statementGravar.setString(1, modelLogin.getLogin());
+			statementGravar.setString(2, modelLogin.getSenha());
+			statementGravar.setString(3, modelLogin.getNome());
+			statementGravar.setString(4, modelLogin.getEmail());
+
+			statementGravar.execute();
+			connection.commit();
+			
+		}else {
+			String sql = "update model_login set login=?, senha=?, nome=?, email=? where id = "+modelLogin.getId()+";";
+			
+			PreparedStatement statementAtualizar = connection.prepareStatement(sql);
+			statementAtualizar.setString(1, modelLogin.getLogin());
+			statementAtualizar.setString(2, modelLogin.getSenha());
+			statementAtualizar.setString(3, modelLogin.getNome());
+			statementAtualizar.setString(4, modelLogin.getEmail());
+			
+			statementAtualizar.executeUpdate();
+			connection.commit();
+			
+		}
 
 		return this.consultaUsuario(modelLogin.getLogin());
 
@@ -57,7 +73,7 @@ public class DAOUsuarioRepository {
 
 	public boolean validarLogin(String login) throws Exception {
 
-		String sql = "select count(1) > 0 as existe from model_login where upper(login) = upper('"+login+"')";
+		String sql = "select count(1) > 0 as existe from model_login where upper(login) = upper('" + login + "')";
 
 		PreparedStatement statement = connection.prepareStatement(sql);
 
