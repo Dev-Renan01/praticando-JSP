@@ -32,13 +32,19 @@ public class ServletUsuarioController extends HttpServlet {
 			String acao = request.getParameter("acao");
 
 			if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("deletar")) {
+
 				String idUser = request.getParameter("id");
-				daoUsuarioRepository.deletarUser(idUser);
 
-				request.setAttribute("msg", "Usuário, excluido com sucesso!");
+				if (idUser == null || idUser.isEmpty()) {
+					request.setAttribute("msg", "Nenhum login selecionado. Selecione um login para excluir!");
 
+				} else {
+					daoUsuarioRepository.deletarUser(idUser);
+
+					request.setAttribute("msg", "Usuário, excluido com sucesso!");
+				}
 			}
-			
+
 			request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
 
 		} catch (Exception e) {

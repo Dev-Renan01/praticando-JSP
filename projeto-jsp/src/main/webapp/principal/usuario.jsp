@@ -45,9 +45,9 @@
 														<form class="form-material"
 															action="<%=request.getContextPath()%>/ServletUsuarioController"
 															method="post" id="formUser">
-															
+
 															<input type="hidden" name="acao" id="acao" value="">
-															
+
 															<div class="form-group form-default  form-static-label">
 																<input type="text" name="id" id="id"
 																	class="form-control" readonly="readonly"
@@ -82,14 +82,15 @@
 																<span class="form-bar"></span> <label
 																	class="float-label">Password</label>
 															</div>
-															
+
 															<button
 																class="btn waves-effect waves-light btn-grd-primary"
 																onclick="limparForm();">Novo</button>
 															<button
 																class="btn waves-effect waves-light btn-grd-success">Salvar</button>
-															<button
-															type="button" class="btn waves-effect waves-light btn-grd-info " onclick="criarDeletar()">Excluir</button>
+															<button type="button"
+																class="btn waves-effect waves-light btn-grd-info "
+																onclick="criarDeletar()">Excluir</button>
 															<span>${msg}</span>
 
 														</form>
@@ -115,10 +116,13 @@
 	<script type="text/javascript">
 	
 	function criarDeletar(){
+
+		if(confirm("Você deseja realmente excluir este usuário?")){
 	
 		document.getElementById("formUser").method = 'get';
 		document.getElementById("acao").value = 'deletar';
 		document.getElementById("formUser").submit();
+		}
 		
 	}
 	
