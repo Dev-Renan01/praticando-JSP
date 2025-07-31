@@ -91,13 +91,16 @@
 															<button type="button"
 																class="btn waves-effect waves-light btn-grd-info "
 																onclick="criarDeletar()">Excluir</button>
-															<span>${msg}</span>
+															<button type="button" class="btn btn-secondary"
+																data-toggle="modal" data-target="#exampleModalUsuario">Pesquisar</button>
+
 
 														</form>
 													</div>
 												</div>
 											</div>
 										</div>
+										<span id="msg">${msg}</span>
 
 									</div>
 									<!-- Page-body end -->
@@ -113,21 +116,50 @@
 
 	<jsp:include page="javascriptfile.jsp"></jsp:include>
 
-	<script type="text/javascript">
-	
-	function criarDeletar(){
 
-		if(confirm("Você deseja realmente excluir este usuário?")){
-	
-		document.getElementById("formUser").method = 'get';
-		document.getElementById("acao").value = 'deletar';
-		document.getElementById("formUser").submit();
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalUsuario" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Pesquisa de
+						usuário</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+				
+				
+				
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Fechar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<script type="text/javascript">
+		function criarDeletar() {
+
+			if (confirm("Você deseja realmente excluir este usuário?")) {
+
+				document.getElementById("formUser").method = 'get';
+				document.getElementById("acao").value = 'deletar';
+				document.getElementById("formUser").submit();
+			}
+
 		}
-		
-	}
-	
-	
-	function limparForm() {
+
+		function limparForm() {
 
 			var elementos = document.getElementById("formUser").elements; /*Retorna os elementos html dentro do form*/
 
